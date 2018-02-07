@@ -18,26 +18,15 @@ RUN apt-get update && \
 		php7.2-mysql \
 		php7.2-intl \
 		php7.2-curl \
-		php-memcached \
-#		php-xdebug \
+		php-xdebug \
 		php7.2-gd \
 		php-imagick \
 		php7.2-xml \
 		php7.2-bcmath \
 		php7.2-zip \
-#	necessary for pecl install
-		php7.2-dev php-pear \
     && apt-get autoremove -y \
     && apt-get clean all && \
     echo "ServerName php72.dev.wlb.io" >> /etc/apache2/apache2.conf
-
-
-# Install XDebug from pecl until there is a stable version
-RUN pecl install xdebug-2.6.0beta1 && \
-    echo 'zend_extension=/usr/lib/php/20170718/xdebug.so' > /etc/php/7.2/mods-available/xdebug.ini && \
-    ln -s /etc/php/7.2/mods-available/xdebug.ini /etc/php/7.2/cli/conf.d/20-xdebug.ini && \
-    ln -s /etc/php/7.2/mods-available/xdebug.ini /etc/php/7.2/apache2/conf.d/20-xdebug.ini
-
 
 RUN mkdir -p /opt/docker
 
@@ -69,4 +58,3 @@ RUN sed -ri ' \
 
 EXPOSE 80
 CMD ["/opt/docker/bootstrap.sh"]
-
