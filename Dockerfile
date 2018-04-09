@@ -47,14 +47,17 @@ ENV PROJECT_WEBROOT /var/www/project/web
 COPY docker/90-xdebug-custom.ini /etc/php/7.2/apache2/conf.d/
 
 # Configure apache
-RUN a2enmod rewrite
+RUN a2enmod rewrite ssl
 
 COPY docker/apache-default.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/apache-default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
+
+RUN a2ensite default-ssl
 
 RUN sed -ri ' \
 	s!^(\s*CustomLog)\s+\S+!\1 /proc/self/fd/1!g; \
 	s!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g; \
 	' /etc/apache2/apache2.conf
 
-EXPOSE 80
+EXPOSE 80 443
 CMD ["/opt/docker/bootstrap.sh"]
