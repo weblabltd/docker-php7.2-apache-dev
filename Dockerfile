@@ -20,7 +20,7 @@ RUN apt-get update && \
 		php7.2-curl \
 		php-xdebug \
 		php7.2-gd \
-		php-imagick \
+		php7.2-gmagick \
 		php7.2-xml \
 		php7.2-bcmath \
 		php7.2-zip \
