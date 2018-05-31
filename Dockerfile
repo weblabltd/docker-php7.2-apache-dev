@@ -18,6 +18,7 @@ RUN apt-get update && \
 		php7.2-mysql \
 		php7.2-intl \
 		php7.2-curl \
+		php-memcached \
 		php7.2-mbstring \
 		php-xdebug \
 		php7.2-gd \
