@@ -28,7 +28,7 @@ RUN apt-get update && \
 		php7.2-zip \
     && apt-get autoremove -y \
     && apt-get clean all && \
-    echo "ServerName php72.dev.wlb.io" >> /etc/apache2/apache2.conf
+    echo "ServerName php72.dev.localhost" >> /etc/apache2/apache2.conf
 
 RUN mkdir -p /opt/docker
 
